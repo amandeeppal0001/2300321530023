@@ -1,6 +1,6 @@
-function GET_SCORE(type) {
-    if (type === "Placement") return 3;
-    if (type === "Result") return 2;
+function GET_SCORE(TYPE) {
+    if (TYPE === "Placement") return 3;
+    if (TYPE === "Result") return 2;
     return 1;
 }
 
@@ -28,8 +28,8 @@ export class MIN_HEAP {
         return this.HEAP.length;
     }
 
-    INSERT(item) {
-        this.HEAP.push(item);
+    INSERT(ITEM) {
+        this.HEAP.push(ITEM);
         this.HEAPIFY_UP(this.HEAP.length - 1);
     }
 
@@ -44,41 +44,41 @@ export class MIN_HEAP {
         return MIN;
     }
 
-    HEAPIFY_UP(idx) {
-        let current = idx;
-        while (current > 0) {
-            const PARENT = Math.floor((current - 1) / 2);
-            if (COMPARE_NOTIFICATIONS(this.HEAP[current], this.HEAP[PARENT]) < 0) {
-                const TEMP = this.HEAP[current];
-                this.HEAP[current] = this.HEAP[PARENT];
+    HEAPIFY_UP(IDX) {
+        let CURRENT = IDX;
+        while (CURRENT > 0) {
+            const PARENT = Math.floor((CURRENT - 1) / 2);
+            if (COMPARE_NOTIFICATIONS(this.HEAP[CURRENT], this.HEAP[PARENT]) < 0) {
+                const TEMP = this.HEAP[CURRENT];
+                this.HEAP[CURRENT] = this.HEAP[PARENT];
                 this.HEAP[PARENT] = TEMP;
-                current = PARENT;
+                CURRENT = PARENT;
             } else {
                 break;
             }
         }
     }
 
-    HEAPIFY_DOWN(idx) {
-        let current = idx;
+    HEAPIFY_DOWN(IDX) {
+        let CURRENT = IDX;
         const LENGTH = this.HEAP.length;
         while (true) {
-            let smallest = current;
-            const LEFT = 2 * current + 1;
-            const RIGHT = 2 * current + 2;
+            let SMALLEST = CURRENT;
+            const LEFT = 2 * CURRENT + 1;
+            const RIGHT = 2 * CURRENT + 2;
 
-            if (LEFT < LENGTH && COMPARE_NOTIFICATIONS(this.HEAP[LEFT], this.HEAP[smallest]) < 0) {
-                smallest = LEFT;
+            if (LEFT < LENGTH && COMPARE_NOTIFICATIONS(this.HEAP[LEFT], this.HEAP[SMALLEST]) < 0) {
+                SMALLEST = LEFT;
             }
-            if (RIGHT < LENGTH && COMPARE_NOTIFICATIONS(this.HEAP[RIGHT], this.HEAP[smallest]) < 0) {
-                smallest = RIGHT;
+            if (RIGHT < LENGTH && COMPARE_NOTIFICATIONS(this.HEAP[RIGHT], this.HEAP[SMALLEST]) < 0) {
+                SMALLEST = RIGHT;
             }
 
-            if (smallest !== current) {
-                const TEMP = this.HEAP[current];
-                this.HEAP[current] = this.HEAP[smallest];
-                this.HEAP[smallest] = TEMP;
-                current = smallest;
+            if (SMALLEST !== CURRENT) {
+                const TEMP = this.HEAP[CURRENT];
+                this.HEAP[CURRENT] = this.HEAP[SMALLEST];
+                this.HEAP[SMALLEST] = TEMP;
+                CURRENT = SMALLEST;
             } else {
                 break;
             }

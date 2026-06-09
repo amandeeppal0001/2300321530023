@@ -14,10 +14,10 @@ let NOTIFICATIONS = [];
 const READ_IDS = new Set();
 let CACHED_TOKEN = process.env.accessToken || null;
 
-function IS_TOKEN_EXPIRED(token) {
-    if (!token) return true;
+function IS_TOKEN_EXPIRED(TOKEN) {
+    if (!TOKEN) return true;
     try {
-        const PAYLOAD_BASE64 = token.split('.')[1];
+        const PAYLOAD_BASE64 = TOKEN.split('.')[1];
         if (!PAYLOAD_BASE64) return true;
         const DECODED = JSON.parse(Buffer.from(PAYLOAD_BASE64, 'base64').toString());
         const EXP = DECODED.exp || (DECODED.MapClaims && DECODED.MapClaims.exp);
@@ -72,12 +72,12 @@ async function GET_VALID_TOKEN() {
 }
 
 async function SYNC_EXTERNAL_NOTIFICATIONS() {
-    const token = await GET_VALID_TOKEN();
-    if (!token) return;
+    const TOKEN = await GET_VALID_TOKEN();
+    if (!TOKEN) return;
 
     try {
         const response = await fetch("http://4.224.186.213/evaluation-service/notifications", {
-            headers: { "Authorization": `Bearer ${token}` }
+            headers: { "Authorization": `Bearer ${TOKEN}` }
         });
 
         if (response.ok) {

@@ -1,25 +1,25 @@
 class Logger {
-    static info(message: string, ...args: any[]) {
+    static info(MESSAGE: string, ...ARGS: any[]) {
         if (typeof window !== 'undefined') {
-            const logs = (window as any)._customLogs || [];
-            logs.push({ level: 'info', message, args, timestamp: new Date().toISOString() });
-            (window as any)._customLogs = logs;
+            const LOGS = (window as any)._customLogs || [];
+            LOGS.push({ level: 'info', MESSAGE, ARGS, timestamp: new Date().toISOString() });
+            (window as any)._customLogs = LOGS;
         }
     }
 
-    static error(message: string, ...args: any[]) {
+    static error(MESSAGE: string, ...ARGS: any[]) {
         if (typeof window !== 'undefined') {
-            const logs = (window as any)._customLogs || [];
-            logs.push({ level: 'error', message, args, timestamp: new Date().toISOString() });
-            (window as any)._customLogs = logs;
+            const LOGS = (window as any)._customLogs || [];
+            LOGS.push({ level: 'error', MESSAGE, ARGS, timestamp: new Date().toISOString() });
+            (window as any)._customLogs = LOGS;
         }
     }
     
-    static warn(message: string, ...args: any[]) {
+    static warn(MESSAGE: string, ...ARGS: any[]) {
         if (typeof window !== 'undefined') {
-            const logs = (window as any)._customLogs || [];
-            logs.push({ level: 'warn', message, args, timestamp: new Date().toISOString() });
-            (window as any)._customLogs = logs;
+            const LOGS = (window as any)._customLogs || [];
+            LOGS.push({ level: 'warn', MESSAGE, ARGS, timestamp: new Date().toISOString() });
+            (window as any)._customLogs = LOGS;
         }
     }
 }

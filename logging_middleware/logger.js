@@ -14,10 +14,10 @@ const FRONTEND_PACKAGES = [
 
 let CACHED_TOKEN = process.env.accessToken || null;
 
-function IS_TOKEN_EXPIRED(token) {
-    if (!token) return true;
+function IS_TOKEN_EXPIRED(TOKEN) {
+    if (!TOKEN) return true;
     try {
-        const PAYLOAD_BASE64 = token.split('.')[1];
+        const PAYLOAD_BASE64 = TOKEN.split('.')[1];
         if (!PAYLOAD_BASE64) return true;
         const DECODED = JSON.parse(Buffer.from(PAYLOAD_BASE64, 'base64').toString());
         const EXP = DECODED.exp || (DECODED.MapClaims && DECODED.MapClaims.exp);
@@ -84,8 +84,8 @@ export const LOG = async (STACK, LEVEL, PKG, MESSAGE) => {
     const ALLOWED_PACKAGES = NORM_STACK === 'backend' ? BACKEND_PACKAGES : FRONTEND_PACKAGES;
     if (!ALLOWED_PACKAGES.includes(NORM_PKG)) return;
 
-    const token = await GET_VALID_TOKEN();
-    if (!token) return;
+    const TOKEN = await GET_VALID_TOKEN();
+    if (!TOKEN) return;
 
     const PAYLOAD = { 
         stack: NORM_STACK, 
@@ -99,7 +99,7 @@ export const LOG = async (STACK, LEVEL, PKG, MESSAGE) => {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}` 
+                "Authorization": `Bearer ${TOKEN}` 
             },
             body: JSON.stringify(PAYLOAD)
         });
