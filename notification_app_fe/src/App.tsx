@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Logger from "./logger.ts";
+import Logger from "./logger";
 
 interface Notification {
   ID: string;
