@@ -43,3 +43,7 @@ yarn-error.log*
 node_modules/
 jspm_packages/
 web_modules/
+*.tsbuildinfo
+dist/
+out/
+build/
